@@ -1,0 +1,134 @@
+---
+const steps = [
+  {
+    icon: "🌱",
+    title: "Selección en origen",
+    desc: "Visitamos fincas en Cusco, Cajamarca y Junín para seleccionar los mejores granos de café de altura.",
+    detail: "1,400 - 1,800 msnm"
+  },
+  {
+    icon: "🔥",
+    title: "Tostado artesanal",
+    desc: "Tostamos en pequeños lotes en nuestra tostadora en Lima, cuidando cada perfil de tueste.",
+    detail: "Lotes de 15kg"
+  },
+  {
+    icon: "📦",
+    title: "Empaque fresco",
+    desc: "Empacamos inmediatamente después del tueste con válvula de desgasificación para máxima frescura.",
+    detail: "48hrs post-tueste"
+  },
+  {
+    icon: "🚚",
+    title: "Envío a tu puerta",
+    desc: "Enviamos a todo el Perú. Tu café llega fresco y listo para preparar en la comodidad de tu hogar.",
+    detail: "2-4 días hábiles"
+  },
+];
+---
+
+<section class="section" id="proceso">
+  <div class="container">
+    <h2 class="section-title">Del grano a la taza</h2>
+    <p class="section-subtitle">
+      Un proceso cuidadoso que respeta el origen y resalta lo mejor de cada grano peruano.
+    </p>
+    <div class="process-grid">
+      {steps.map((step, i) => (
+        <div class="process-step">
+          <div class="step-number">{String(i + 1).padStart(2, '0')}</div>
+          <div class="step-icon">{step.icon}</div>
+          <h3 class="step-title">{step.title}</h3>
+          <p class="step-desc">{step.desc}</p>
+          <span class="step-detail">{step.detail}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    position: relative;
+  }
+
+  .process-grid::before {
+    content: '';
+    position: absolute;
+    top: 80px;
+    left: 12.5%;
+    right: 12.5%;
+    height: 2px;
+    background: linear-gradient(to right, var(--accent-light), var(--accent), var(--accent-light));
+    opacity: 0.3;
+  }
+
+  .process-step {
+    text-align: center;
+    position: relative;
+    padding: 2rem 1rem;
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+  }
+
+  .process-step:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .step-number {
+    position: absolute;
+    top: -10px;
+    right: -5px;
+    font-family: 'Lora', serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: var(--cream);
+    line-height: 1;
+  }
+
+  .step-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+  }
+
+  .step-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    color: var(--primary);
+  }
+
+  .step-desc {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .step-detail {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: rgba(200, 121, 65, 0.1);
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+  }
+
+  @media (max-width: 960px) {
+    .process-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .process-grid::before { display: none; }
+  }
+
+  @media (max-width: 540px) {
+    .process-grid { grid-template-columns: 1fr; }
+  }
+</style>

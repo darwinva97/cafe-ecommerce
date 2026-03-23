@@ -1,0 +1,278 @@
+---
+const plans = [
+  {
+    name: "Esencial",
+    weight: "250g",
+    price: 35,
+    features: ["1 bolsa mensual", "Envío gratis", "Elige tu tostado", "Cancela cuando quieras"],
+    popular: false
+  },
+  {
+    name: "Favorito",
+    weight: "500g",
+    price: 65,
+    features: ["2 bolsas mensuales", "Envío gratis", "15% de descuento", "Acceso a ediciones limitadas", "Cancela cuando quieras"],
+    popular: true
+  },
+  {
+    name: "Experto",
+    weight: "1kg",
+    price: 120,
+    features: ["4 bolsas mensuales", "Envío gratis", "15% de descuento", "Ediciones limitadas", "Accesorios de regalo", "Cancela cuando quieras"],
+    popular: false
+  },
+];
+
+const benefits = [
+  "Envío gratis en cada entrega",
+  "15% de descuento permanente",
+  "Acceso a ediciones limitadas",
+  "Flexibilidad: semanal, quincenal o mensual",
+];
+---
+
+<section class="section subscription-section" id="suscripcion">
+  <div class="container">
+    <h2 class="section-title">Café fresco cada mes en tu puerta</h2>
+    <p class="section-subtitle">
+      Elige tu plan, selecciona la frecuencia y recibe café recién tostado sin preocuparte por nada.
+    </p>
+
+    <div class="frequency-selector">
+      <span class="freq-label">Frecuencia:</span>
+      <div class="freq-options">
+        <button class="freq-btn">Semanal</button>
+        <button class="freq-btn active">Quincenal</button>
+        <button class="freq-btn">Mensual</button>
+      </div>
+    </div>
+
+    <div class="plans-grid">
+      {plans.map(plan => (
+        <div class={`plan-card ${plan.popular ? 'plan-popular' : ''}`}>
+          {plan.popular && <span class="plan-badge">Más popular</span>}
+          <h3 class="plan-name">{plan.name}</h3>
+          <span class="plan-weight">{plan.weight}</span>
+          <div class="plan-price">
+            <span class="price-amount">S/ {plan.price}</span>
+            <span class="price-period">/mes</span>
+          </div>
+          <ul class="plan-features">
+            {plan.features.map(feature => (
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+          <button class={`btn ${plan.popular ? 'btn-primary' : 'btn-outline'} plan-btn`}>
+            Suscribirse
+          </button>
+        </div>
+      ))}
+    </div>
+
+    <div class="sub-benefits">
+      {benefits.map(benefit => (
+        <div class="sub-benefit">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>{benefit}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .subscription-section {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: #fff;
+  }
+
+  .subscription-section .section-title {
+    color: #fff;
+  }
+
+  .subscription-section .section-subtitle {
+    color: rgba(255,255,255,0.75);
+  }
+
+  .frequency-selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .freq-label {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .freq-options {
+    display: flex;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50px;
+    padding: 4px;
+  }
+
+  .freq-btn {
+    padding: 0.5rem 1.2rem;
+    border: none;
+    background: transparent;
+    color: rgba(255,255,255,0.7);
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .freq-btn.active {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .plan-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius);
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+  }
+
+  .plan-card:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-4px);
+  }
+
+  .plan-popular {
+    background: rgba(255,255,255,0.12);
+    border-color: var(--accent);
+    transform: scale(1.05);
+  }
+
+  .plan-popular:hover {
+    transform: scale(1.05) translateY(-4px);
+  }
+
+  .plan-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.3rem 1rem;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .plan-name {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .plan-weight {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .plan-price {
+    margin: 1.25rem 0;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .price-amount {
+    font-family: 'Lora', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+  }
+
+  .price-period {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .plan-features {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 1.5rem;
+  }
+
+  .plan-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .plan-features svg {
+    flex-shrink: 0;
+    color: var(--accent-light);
+  }
+
+  .plan-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .plan-card .btn-outline {
+    color: #fff;
+    border-color: rgba(255,255,255,0.4);
+  }
+
+  .plan-card .btn-outline:hover {
+    background: #fff;
+    color: var(--primary);
+    border-color: #fff;
+  }
+
+  .sub-benefits {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .sub-benefit {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.75);
+  }
+
+  @media (max-width: 768px) {
+    .plans-grid {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+    }
+    .plan-popular { transform: none; }
+    .plan-popular:hover { transform: translateY(-4px); }
+    .sub-benefits { flex-direction: column; align-items: center; }
+  }
+</style>

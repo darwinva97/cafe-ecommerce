@@ -1,0 +1,121 @@
+---
+const testimonials = [
+  {
+    name: "María García",
+    location: "Lima, Miraflores",
+    text: "El mejor café que he probado. El Cusco Single Origin tiene unas notas de chocolate increíbles. Desde que me suscribí, no he vuelto a comprar café en supermercado.",
+    rating: 5,
+    avatar: "MG"
+  },
+  {
+    name: "Carlos Mendoza",
+    location: "Arequipa",
+    text: "La frescura se nota desde que abres la bolsa. El aroma es espectacular. Además, me encanta saber que están apoyando directamente a los productores peruanos.",
+    rating: 5,
+    avatar: "CM"
+  },
+  {
+    name: "Ana Lucía Torres",
+    location: "Lima, San Isidro",
+    text: "Probé el Junín Orgánico y quedé fascinada con las notas florales. La suscripción mensual es súper conveniente y el envío siempre llega a tiempo.",
+    rating: 5,
+    avatar: "AT"
+  },
+];
+---
+
+<section class="section testimonials-section">
+  <div class="container">
+    <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+    <p class="section-subtitle">
+      Miles de amantes del café confían en Origen Café para su taza diaria.
+    </p>
+    <div class="testimonials-grid">
+      {testimonials.map(t => (
+        <div class="testimonial-card card">
+          <div class="testimonial-stars">
+            {Array.from({ length: t.rating }).map(() => (
+              <span class="star">★</span>
+            ))}
+          </div>
+          <p class="testimonial-text">"{t.text}"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">{t.avatar}</div>
+            <div>
+              <strong class="author-name">{t.name}</strong>
+              <span class="author-location">{t.location}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials-section {
+    background: var(--bg-alt);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .testimonial-card {
+    padding: 2rem;
+  }
+
+  .testimonial-stars {
+    margin-bottom: 1rem;
+  }
+
+  .star {
+    color: var(--accent);
+    font-size: 1.1rem;
+  }
+
+  .testimonial-text {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .author-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .author-name {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--primary);
+  }
+
+  .author-location {
+    font-size: 0.78rem;
+    color: var(--text-light);
+  }
+
+  @media (max-width: 768px) {
+    .testimonials-grid { grid-template-columns: 1fr; }
+  }
+</style>

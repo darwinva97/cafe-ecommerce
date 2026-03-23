@@ -1,0 +1,424 @@
+---
+import Page from '../../layouts/Page.astro';
+
+const products = [
+  {
+    name: "Cusco Single Origin",
+    origin: "Cusco",
+    region: "Quillabamba",
+    roast: "Medio",
+    notes: "Chocolate, nuez, caramelo",
+    price: 42,
+    weight: "250g",
+    badge: "Más vendido",
+    badgeClass: "badge-popular",
+    image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=400&fit=crop",
+    slug: "/productos/cusco-single-origin",
+    score: 86,
+  },
+  {
+    name: "Cajamarca Reserva",
+    origin: "Cajamarca",
+    region: "Jaén",
+    roast: "Oscuro",
+    notes: "Cereza, cacao, especias",
+    price: 48,
+    weight: "250g",
+    badge: "Nuevo",
+    badgeClass: "badge-new",
+    image: "https://images.unsplash.com/photo-1587734195503-904fca47e0e9?w=400&h=400&fit=crop",
+    slug: "#",
+    score: 85,
+  },
+  {
+    name: "Junín Orgánico",
+    origin: "Junín",
+    region: "Chanchamayo",
+    roast: "Ligero",
+    notes: "Cítricos, floral, miel",
+    price: 45,
+    weight: "250g",
+    badge: "Orgánico",
+    badgeClass: "badge-organic",
+    image: "https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?w=400&h=400&fit=crop",
+    slug: "#",
+    score: 87,
+  },
+  {
+    name: "Blend Casa",
+    origin: "Blend",
+    region: "Peruano",
+    roast: "Medio",
+    notes: "Chocolate, caramelo",
+    price: 38,
+    weight: "250g",
+    badge: null,
+    badgeClass: "",
+    image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefda?w=400&h=400&fit=crop",
+    slug: "#",
+    score: 84,
+  },
+  {
+    name: "Espresso Premium",
+    origin: "Blend",
+    region: "Especial",
+    roast: "Oscuro",
+    notes: "Intenso, cacao, nuez",
+    price: 44,
+    weight: "250g",
+    badge: "Más vendido",
+    badgeClass: "badge-popular",
+    image: "https://images.unsplash.com/photo-1610889556528-9a770e32642f?w=400&h=400&fit=crop",
+    slug: "#",
+    score: 85,
+  },
+  {
+    name: "Descafeinado Natural",
+    origin: "Cusco",
+    region: "Valle Sagrado",
+    roast: "Medio",
+    notes: "Suave, dulce",
+    price: 46,
+    weight: "250g",
+    badge: "Nuevo",
+    badgeClass: "badge-new",
+    image: "https://images.unsplash.com/photo-1498804103079-a6351b050096?w=400&h=400&fit=crop",
+    slug: "#",
+    score: 83,
+  },
+  {
+    name: "Cusco Dark Roast",
+    origin: "Cusco",
+    region: "La Convención",
+    roast: "Oscuro",
+    notes: "Toffee, chocolate negro, nuez moscada",
+    price: 44,
+    weight: "250g",
+    badge: null,
+    badgeClass: "",
+    image: "https://images.unsplash.com/photo-1504630083234-14187a9df0f5?w=400&h=400&fit=crop",
+    slug: "#",
+    score: 85,
+  },
+  {
+    name: "Cajamarca Honey Process",
+    origin: "Cajamarca",
+    region: "San Ignacio",
+    roast: "Ligero",
+    notes: "Durazno, panela, floral",
+    price: 52,
+    weight: "250g",
+    badge: "Edición Limitada",
+    badgeClass: "badge-new",
+    image: "https://images.unsplash.com/photo-1501747315-124a0eaca060?w=400&h=400&fit=crop",
+    slug: "#",
+    score: 88,
+  },
+];
+
+const origins = ["Todos", "Cusco", "Cajamarca", "Junín", "Blend"];
+const roasts = ["Todos", "Ligero", "Medio", "Oscuro"];
+---
+
+<Page title="Productos - Origen Café">
+  <section class="catalog-hero">
+    <div class="container">
+      <h1>Nuestros Cafés</h1>
+      <p>Explora nuestra selección de cafés de especialidad 100% peruanos</p>
+    </div>
+  </section>
+
+  <section class="section catalog-section">
+    <div class="container">
+      <div class="catalog-controls">
+        <div class="filters">
+          <div class="filter-group">
+            <label class="filter-label">Origen</label>
+            <div class="filter-options">
+              {origins.map((o, i) => (
+                <button class={`filter-btn ${i === 0 ? 'active' : ''}`}>{o}</button>
+              ))}
+            </div>
+          </div>
+          <div class="filter-group">
+            <label class="filter-label">Tostado</label>
+            <div class="filter-options">
+              {roasts.map((r, i) => (
+                <button class={`filter-btn ${i === 0 ? 'active' : ''}`}>{r}</button>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div class="sort-group">
+          <label class="filter-label">Ordenar por</label>
+          <select class="sort-select">
+            <option>Popularidad</option>
+            <option>Precio: menor a mayor</option>
+            <option>Precio: mayor a menor</option>
+            <option>Puntaje</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="catalog-count">
+        <span>Mostrando <strong>{products.length} productos</strong></span>
+      </div>
+
+      <div class="catalog-grid">
+        {products.map(product => (
+          <article class="product-card card">
+            <div class="product-img-wrapper">
+              <img src={product.image} alt={product.name} class="product-img" loading="lazy" />
+              {product.badge && (
+                <span class={`badge ${product.badgeClass} product-badge`}>{product.badge}</span>
+              )}
+              <span class="product-score">{product.score} pts</span>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span class="product-origin">{product.origin}, {product.region}</span>
+                <span class="product-weight">{product.weight}</span>
+              </div>
+              <h3 class="product-name">
+                <a href={product.slug}>{product.name}</a>
+              </h3>
+              <span class="product-roast">Tostado {product.roast}</span>
+              <div class="product-notes">
+                <span class="notes-label">Notas:</span> {product.notes}
+              </div>
+              <div class="product-bottom">
+                <span class="product-price">S/ {product.price}</span>
+                <button class="btn btn-primary product-btn">Agregar</button>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Page>
+
+<style>
+  .catalog-hero {
+    padding: 8rem 0 3rem;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    text-align: center;
+    color: #fff;
+  }
+
+  .catalog-hero h1 {
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+
+  .catalog-hero p {
+    color: rgba(255,255,255,0.75);
+    font-size: 1.1rem;
+  }
+
+  .catalog-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .filters {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.5rem;
+  }
+
+  .filter-options {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    padding: 0.45rem 1rem;
+    border: 1.5px solid var(--bg-alt);
+    border-radius: 50px;
+    background: #fff;
+    color: var(--text-light);
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .filter-btn:hover,
+  .filter-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  .sort-select {
+    padding: 0.5rem 1rem;
+    border: 1.5px solid var(--bg-alt);
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: #fff;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .sort-select:focus {
+    border-color: var(--accent);
+  }
+
+  .catalog-count {
+    margin-bottom: 2rem;
+    font-size: 0.88rem;
+    color: var(--text-light);
+  }
+
+  .catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .product-card { display: flex; flex-direction: column; }
+
+  .product-img-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+
+  .product-card:hover .product-img {
+    transform: scale(1.05);
+  }
+
+  .product-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+
+  .product-score {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.5rem;
+    border-radius: 50px;
+  }
+
+  .product-info {
+    padding: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .product-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.3rem;
+  }
+
+  .product-origin {
+    font-size: 0.72rem;
+    color: var(--accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .product-weight {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    background: var(--bg-alt);
+    padding: 0.1rem 0.4rem;
+    border-radius: 50px;
+  }
+
+  .product-name {
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .product-name a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+
+  .product-name a:hover {
+    color: var(--accent);
+  }
+
+  .product-roast {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .product-notes {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--bg-alt);
+  }
+
+  .notes-label {
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .product-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+  }
+
+  .product-price {
+    font-family: 'Lora', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  .product-btn {
+    padding: 0.45rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 960px) {
+    .catalog-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 540px) {
+    .catalog-grid { grid-template-columns: 1fr; }
+    .catalog-controls { flex-direction: column; align-items: stretch; }
+  }
+</style>

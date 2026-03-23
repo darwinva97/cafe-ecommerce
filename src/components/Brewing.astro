@@ -1,0 +1,142 @@
+---
+const methods = [
+  {
+    icon: "🫖",
+    name: "Prensa Francesa",
+    time: "4 minutos",
+    grind: "Grueso",
+    temp: "93°C",
+    ratio: "1:15",
+    desc: "Método de inmersión que produce un café con cuerpo completo y rico en aceites."
+  },
+  {
+    icon: "☕",
+    name: "V60 Pour Over",
+    time: "3 minutos",
+    grind: "Medio-fino",
+    temp: "92°C",
+    ratio: "1:16",
+    desc: "Filtrado por goteo que resalta la claridad y notas delicadas del café de origen."
+  },
+  {
+    icon: "🔄",
+    name: "AeroPress",
+    time: "2 minutos",
+    grind: "Fino",
+    temp: "85°C",
+    ratio: "1:12",
+    desc: "Versátil y portátil. Produce un café limpio con buen cuerpo y baja acidez."
+  },
+  {
+    icon: "⚡",
+    name: "Espresso",
+    time: "25-30 seg",
+    grind: "Muy fino",
+    temp: "93°C",
+    ratio: "1:2",
+    desc: "Extracción a presión que concentra todos los sabores en una taza intensa."
+  },
+];
+---
+
+<section class="section" id="preparacion">
+  <div class="container">
+    <h2 class="section-title">Guía de Preparación</h2>
+    <p class="section-subtitle">
+      Cada método resalta distintas cualidades de nuestro café. Encuentra tu favorito.
+    </p>
+    <div class="brewing-grid">
+      {methods.map(method => (
+        <div class="brewing-card card">
+          <div class="brewing-icon">{method.icon}</div>
+          <h3 class="brewing-name">{method.name}</h3>
+          <p class="brewing-desc">{method.desc}</p>
+          <div class="brewing-specs">
+            <div class="spec">
+              <span class="spec-label">Tiempo</span>
+              <span class="spec-value">{method.time}</span>
+            </div>
+            <div class="spec">
+              <span class="spec-label">Molienda</span>
+              <span class="spec-value">{method.grind}</span>
+            </div>
+            <div class="spec">
+              <span class="spec-label">Temperatura</span>
+              <span class="spec-value">{method.temp}</span>
+            </div>
+            <div class="spec">
+              <span class="spec-label">Ratio</span>
+              <span class="spec-value">{method.ratio}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .brewing-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .brewing-card {
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .brewing-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .brewing-name {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    color: var(--primary);
+  }
+
+  .brewing-desc {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .brewing-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .spec {
+    background: var(--bg-alt);
+    padding: 0.5rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .spec-label {
+    display: block;
+    font-size: 0.68rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.15rem;
+  }
+
+  .spec-value {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--primary);
+  }
+
+  @media (max-width: 960px) {
+    .brewing-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 540px) {
+    .brewing-grid { grid-template-columns: 1fr; }
+  }
+</style>

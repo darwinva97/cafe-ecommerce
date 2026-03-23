@@ -1,0 +1,163 @@
+---
+const timeline = [
+  { year: "2018", title: "Fundación", desc: "Nace Origen Café con la misión de llevar el mejor café peruano al mundo." },
+  { year: "2020", title: "Primera tienda", desc: "Abrimos nuestra primera tienda y tostadora en Barranco, Lima." },
+  { year: "2023", title: "Suscripción", desc: "Lanzamos nuestro servicio de suscripción mensual de café." },
+  { year: "2025", title: "10,000+ clientes", desc: "Alcanzamos más de 10,000 clientes satisfechos en todo el Perú." },
+];
+---
+
+<section class="section story-section" id="historia">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-images">
+        <div class="story-img-main">
+          <img
+            src="https://images.unsplash.com/photo-1524350876685-274059332603?w=600&h=500&fit=crop"
+            alt="Finca de café en las alturas del Perú"
+            loading="lazy"
+          />
+        </div>
+        <div class="story-img-secondary">
+          <img
+            src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=400&h=300&fit=crop"
+            alt="Proceso de tostado artesanal de café"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <div class="story-content">
+        <span class="story-label">Nuestra Historia</span>
+        <h2>Pasión por el café peruano desde el origen</h2>
+        <p>
+          Somos un grupo de amantes del café que recorrieron las regiones cafetaleras del Perú buscando los mejores granos. Desde las alturas de Cusco hasta los valles de Cajamarca y las montañas de Junín, descubrimos sabores únicos que merecían ser compartidos.
+        </p>
+        <p>
+          Trabajamos directamente con productores locales, asegurando precios justos y prácticas sostenibles. Cada bolsa de café que vendemos cuenta la historia de una familia productora y de una tierra generosa.
+        </p>
+
+        <div class="timeline">
+          {timeline.map(item => (
+            <div class="timeline-item">
+              <span class="timeline-year">{item.year}</span>
+              <div class="timeline-content">
+                <strong>{item.title}</strong>
+                <p>{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .story-section {
+    background: var(--bg-alt);
+  }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .story-images {
+    position: relative;
+  }
+
+  .story-img-main img {
+    border-radius: var(--radius);
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .story-img-secondary {
+    position: absolute;
+    bottom: -30px;
+    right: -20px;
+    width: 55%;
+  }
+
+  .story-img-secondary img {
+    border-radius: var(--radius);
+    border: 4px solid var(--bg-alt);
+    box-shadow: var(--shadow);
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .story-label {
+    display: inline-block;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+
+  .story-content h2 {
+    margin-bottom: 1.25rem;
+  }
+
+  .story-content p {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    line-height: 1.8;
+  }
+
+  .timeline {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .timeline-year {
+    flex-shrink: 0;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 50px;
+    margin-top: 2px;
+  }
+
+  .timeline-content strong {
+    display: block;
+    font-size: 0.95rem;
+    color: var(--primary);
+    margin-bottom: 0.15rem;
+  }
+
+  .timeline-content p {
+    font-size: 0.85rem;
+    margin: 0;
+    color: var(--text-light);
+  }
+
+  @media (max-width: 768px) {
+    .story-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .story-img-main img { height: 300px; }
+    .story-img-secondary {
+      right: 0;
+      bottom: -20px;
+    }
+  }
+</style>

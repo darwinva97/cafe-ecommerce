@@ -1,0 +1,113 @@
+---
+---
+
+<section class="section cta-section" id="contacto">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-content">
+        <h2>Prueba nuestro café</h2>
+        <p class="cta-desc">
+          Primera bolsa con <strong>20% de descuento</strong>. Suscríbete a nuestro newsletter y recibe tu código de descuento.
+        </p>
+      </div>
+      <form class="cta-form" onsubmit="event.preventDefault()">
+        <div class="cta-input-group">
+          <input
+            type="email"
+            placeholder="tu@email.com"
+            class="cta-input"
+            required
+            aria-label="Correo electrónico"
+          />
+          <button type="submit" class="btn btn-primary cta-btn">
+            Obtener Descuento
+          </button>
+        </div>
+        <p class="cta-note">Sin spam. Solo café, novedades y ofertas especiales.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    background: var(--cream);
+  }
+
+  .cta-inner {
+    background: #fff;
+    border-radius: 20px;
+    padding: 3.5rem;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    box-shadow: var(--shadow);
+  }
+
+  .cta-content {
+    flex: 1;
+  }
+
+  .cta-content h2 {
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-desc {
+    color: var(--text-light);
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  .cta-desc strong {
+    color: var(--accent);
+  }
+
+  .cta-form {
+    flex: 1;
+  }
+
+  .cta-input-group {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .cta-input {
+    flex: 1;
+    padding: 0.9rem 1.2rem;
+    border: 2px solid var(--bg-alt);
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    transition: border-color 0.3s;
+    outline: none;
+  }
+
+  .cta-input:focus {
+    border-color: var(--accent);
+  }
+
+  .cta-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .cta-note {
+    margin-top: 0.75rem;
+    font-size: 0.78rem;
+    color: var(--text-light);
+  }
+
+  @media (max-width: 768px) {
+    .cta-inner {
+      flex-direction: column;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      gap: 2rem;
+    }
+    .cta-input-group {
+      flex-direction: column;
+    }
+  }
+</style>
